@@ -1,3 +1,11 @@
+//FILTER.H
+
+/**
+Clare DuVal and Isabella Gebhart
+CPSC 002, 002 Spring 2018
+ckduval, igehbar
+**/
+
 #ifndef FILTER_H
 #define FILTER_H
 
