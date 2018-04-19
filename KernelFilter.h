@@ -4,7 +4,7 @@
 #include <string>
 #include "Filter.h"
 #include <algorithm>
-#include "../image/Image.h"
+#include "Image.h"
 
 using namespace std;
 using Matrix = vector<vector<double>>;

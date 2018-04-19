@@ -1,25 +1,28 @@
-#ifndef FILTER_H
-#define FILTER_H
+#ifndef SIMPLEFILTER_H
+#define SIMPLEFILTER_H
 
 #include <string>
+#include "Filter.h"
 #include <algorithm>
 #include "Image.h"
 
 using namespace std;
+using Matrix = vector<vector<double>>;
 
-class Filter {
+class SimpleFilter : public Filter {
   protected:
     // Data - Shows that abstract classes can still contain data
-    string name;
+  //  string name;
 
     // Derived classes need these visible
-    Filter();
-    Filter(string);
-    Filter(const Filter&);
+    SimpleFilter();
+    SimpleFilter(string name);
+    SimpleFilter(const SimpleFilter&);
+
 
   public:
     // Pure virtual destructor - Still needs definition!
-    virtual ~Filter () = 0;
+    virtual ~SimpleFilter () = 0;
 
     // Static helpers - should be a template
     static int clamp (int lo, int hi, int x);

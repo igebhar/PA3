@@ -1,5 +1,5 @@
-#ifndef SHARPENFILTER_H
-#define SHARPENFILTER_H
+#ifndef BLURFILTER_H
+#define BLURFILTER_H
 
 #include <string>
 #include <algorithm>
@@ -9,14 +9,14 @@
 using namespace std;
 
 
-class SharpenFilter : public KernelFilter {
+class BlurFilter : public KernelFilter {
     protected:
-          static const  Matrix K3;
+          static const  Matrix Blur;
 
         public:
-          SharpenFilter();
-          SharpenFilter(string);
-          SharpenFilter(const SharpenFilter&);
+          BlurFilter();
+          BlurFilter(string);
+          BlurFilter(const BlurFilter&);
               // Finally implement!
               virtual void apply(Image&) const;
 
