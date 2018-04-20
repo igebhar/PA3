@@ -1,3 +1,9 @@
+/**
+Isabella Gebhart and Clare DuVal
+CPSC 002 Spring 2018
+igehbar, ckduval
+**/
+
 #ifndef VFLIPFILTER_H
 #define VFLIPFILTER_H
 

@@ -4,8 +4,8 @@ CPSC 002 Spring 2018
 igehbar, ckduval
 **/
 
-#ifndef GRAYSCALEFILTER_H
-#define GRAYSCALEFILTER_H
+#ifndef BINARYFILTER_H
+#define BinaryFilter_H
 
 #include <string>
 #include <algorithm>
@@ -14,14 +14,13 @@ igehbar, ckduval
 
 using namespace std;
 
-
-class GrayscaleFilter : public PixelFilter {
+class BinaryFilter : public PixelFilter {
 
         public:
-          GrayscaleFilter();
-          GrayscaleFilter(string);
-          GrayscaleFilter(const GrayscaleFilter&);
-           ~GrayscaleFilter();
+          BinaryFilter();
+          BinaryFilter(string);
+          BinaryFilter(const BinaryFilter&);
+           ~BinaryFilter();
               // Finally implement!
               virtual Pixel apply_transform(const Pixel&) const;
 

@@ -1,3 +1,9 @@
+/**
+Isabella Gebhart and Clare DuVal
+CPSC 002 Spring 2018
+igehbar, ckduval
+**/
+
 #include "Pixel.h"
 
 Pixel::Pixel () : R(0), G(0), B(0) {}

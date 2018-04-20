@@ -1,3 +1,9 @@
+/**
+Isabella Gebhart and Clare DuVal
+CPSC 002 Spring 2018
+igehbar, ckduval
+**/
+
 #include "GrayscaleFilter.h"
 #include "Pixel.h"
 

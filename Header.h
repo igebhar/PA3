@@ -1,3 +1,9 @@
+/**
+Isabella Gebhart and Clare DuVal
+CPSC 002 Spring 2018
+igehbar, ckduval
+**/
+
 #ifndef HEADER_T
 #define HEADER_T 1
 
