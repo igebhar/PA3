@@ -21,7 +21,7 @@ BinaryFilter::BinaryFilter(const BinaryFilter& bf) :
 BinaryFilter::~BinaryFilter() {}
 
 
- Pixel BinaryFilter::apply_transform(const Pixel& pix) const{
+ Pixel BinaryFilter::apply(const Pixel& pix) const{
   uint8_t lum = pix.luminance();
   return gray > 128 ? this->primary : this->secondary;
 }
