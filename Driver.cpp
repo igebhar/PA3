@@ -22,6 +22,7 @@ igehbar, ckduval
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -30,6 +31,10 @@ int main(int argc, char const *argv[]) {
       std::cerr << "USAGE: ./out <in.ppm> <out.ppm>";
       return 1;
     }
+
+    //Open filters
+    std::ifstream in(argv[1]);
+    std::ofstream out (argv[2]);
 
     int i = 0;
     //Welcome Message
@@ -52,6 +57,61 @@ int main(int argc, char const *argv[]) {
     }
 
     //Filter Vector
+    vector<int> choice;
+    int c = 0;
+
+    while (c != (-1)) {
+      cin >> c;
+      choice.push_back(c);
+    }
+
+    Image puppy(in);
+
+    //
+    for (c = 0; choice.at(c) != -1; c++) {
+      //Sharpen
+      if (choice.at(c) == 1) {
+        SharpenFilter sharp;
+        sharp.apply(puppy);
+      }  
+      //Blur
+      else if (choice.at(c) == 2) {
+          BlurFilter blur;
+          blur. (puppy);
+      } 
+      //Horizontal Flip
+      else if (choice.at(c) == 3) {
+          HFlipFilter hFlip;
+          hFlip. (puppy);
+      }
+      //Vertical Flip
+      else if (choice.at(c) == 4) {
+          VFlipFilter vFlip;
+          vFlip. (puppy);
+      }
+      //Binary 
+      else if (choice.at(c) == 5) {
+          BinaryFilter binary;
+          binary. (puppy);
+      }
+      //Black and White
+      else if (choice.at(c) == 6) {
+        GrayscaleFilter bw;
+        bw. (puppy);
+      } else {
+        cout << "You entered a number other than:" << endl;
+        cout << "-1, 1, 2, 3, 4, 5, or 6. Please," << endl;
+        cout << "try again." << endl;
+        return 1;
+      }
+    }  
+
+    //Write output image .ppm
+    puppy.write_to(out);
+
+    //Close files
+    in.close();
+    out.close();
 
     return 0;
 }
