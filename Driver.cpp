@@ -73,38 +73,38 @@ int main(int argc, char const *argv[]) {
       if (choice.at(c) == 1) {
         SharpenFilter sharp;
         sharp.apply(puppy);
-      }  
+      }
       //Blur
       else if (choice.at(c) == 2) {
           BlurFilter blur;
-          blur. (puppy);
-      } 
+          blur.apply(puppy);
+      }
       //Horizontal Flip
       else if (choice.at(c) == 3) {
           HFlipFilter hFlip;
-          hFlip. (puppy);
+          hFlip.apply(puppy);
       }
       //Vertical Flip
       else if (choice.at(c) == 4) {
           VFlipFilter vFlip;
-          vFlip. (puppy);
+          vFlip.apply(puppy);
       }
-      //Binary 
+      //Binary
       else if (choice.at(c) == 5) {
           BinaryFilter binary;
-          binary. (puppy);
+          binary.apply(puppy);
       }
       //Black and White
       else if (choice.at(c) == 6) {
         GrayscaleFilter bw;
-        bw. (puppy);
+        bw.apply_transform(puppy);
       } else {
         cout << "You entered a number other than:" << endl;
         cout << "-1, 1, 2, 3, 4, 5, or 6. Please," << endl;
         cout << "try again." << endl;
         return 1;
       }
-    }  
+    }
 
     //Write output image .ppm
     puppy.write_to(out);
