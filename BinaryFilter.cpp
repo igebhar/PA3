@@ -14,7 +14,6 @@ BinaryFilter::BinaryFilter() :
   PixelFilter("Binary"), primary(BinaryFilter::WHITE),
     secondary(BinaryFilter::BLACK) {}
 
-//BinaryFilter::BinaryFilter(string name) : PixelFilter(name){}
 
 BinaryFilter::BinaryFilter(const BinaryFilter& bf) :
   PixelFilter(bf.name), primary(bf.primary), secondary(bf.secondary)  {}
