@@ -8,7 +8,7 @@ igehbar, ckduval
 #include "Pixel.h"
 
 Pixel BinaryFilter::WHITE (255, 255, 255);
-Pixel BinaryFilter::Black (0,0,0);
+Pixel BinaryFilter::BLACK (0,0,0);
 
 BinaryFilter::BinaryFilter() :
   PixelFilter("Binary"), primary(BinaryFilter::WHITE),
