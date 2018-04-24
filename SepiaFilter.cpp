@@ -54,6 +54,10 @@ SepiaFilter::~SepiaFilter() {}
     }
 
 
-Pixel pixelnew(finalR,finalG, finalB);
+finalR = finalR * 255.0;
+finalG = finalG * 255.0;
+finalB = finalB * 255.0;
+
+Pixel pixelnew((uint8_t)(finalR),(uint8_t)(finalG),(uint8_t)(finalB));
   return pixelnew;
 }
