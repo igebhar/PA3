@@ -4,7 +4,7 @@ CPSC 002 Spring 2018
 igehbar, ckduval
 **/
 
-#include "BinaryFilter.h";
+#include "BinaryFilter.h"
 #include "Pixel.h"
 
 Pixel BinaryFilter::WHITE (255, 255, 255);
@@ -22,7 +22,7 @@ BinaryFilter::~BinaryFilter() {}
 
 
  Pixel BinaryFilter::apply(const Pixel& pix) const{
-  uint8_t lum = pix.luminance();
+  uint8_t gray = pix.luminance();
   return gray > 128 ? this->primary : this->secondary;
 }
 
