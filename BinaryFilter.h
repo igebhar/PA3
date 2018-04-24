@@ -15,14 +15,17 @@ igehbar, ckduval
 using namespace std;
 
 class BinaryFilter : public PixelFilter {
+        protected:
+          static const Pixel WHITE(255, 255, 255);
+          static const Pixel BLACK(0, 0, 0);
 
         public:
           BinaryFilter();
           BinaryFilter(string);
           BinaryFilter(const BinaryFilter&);
-           ~BinaryFilter();
+          ~BinaryFilter();
               // Finally implement!
-              virtual Pixel apply(const Pixel&) const;
+          virtual Pixel apply(Pixel&) const;
 
-            };
+};
 #endif
