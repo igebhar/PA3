@@ -7,22 +7,21 @@ igehbar, ckduval
 #include "BinaryFilter.h"
 #include "Pixel.h"
 
-Pixel BinaryFilter::WHITE (255, 255, 255);
-Pixel BinaryFilter::BLACK (0,0,0);
-
 BinaryFilter::BinaryFilter() :
-  PixelFilter("Binary"), primary(BinaryFilter::WHITE),
-    secondary(BinaryFilter::BLACK) {}
-
+    PixelFilter(" "), pixel1 (255, 255, 255), pixel2 (0,0,0);
 
 BinaryFilter::BinaryFilter(const BinaryFilter& bf) :
-  PixelFilter(bf.name), primary(bf.primary), secondary(bf.secondary)  {}
+  PixelFilter(bf.name), pixel1(bf.primary), pixel2(bf.secondary)  {}
+  
 BinaryFilter::~BinaryFilter() {}
 
 
- Pixel BinaryFilter::apply(const Pixel& pix) const{
-  uint8_t gray = pix.luminance();
-  return gray > 128 ? this->primary : this->secondary;
+ Pixel BinaryFilter::apply_transform(const Pixel& pix) const{
+  uint8_t lum = pix.luminance();
+    if(lum >(pixel1.r() / 2)){
+      return pixel1;
+    }
+    else {
+      return pixel2; 
+    }
 }
-
-//Print
