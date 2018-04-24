@@ -15,9 +15,9 @@ igehbar, ckduval
 using namespace std;
 
 class BinaryFilter : public PixelFilter {
-        protected:
-          static const Pixel WHITE(255, 255, 255);
-          static const Pixel BLACK(0, 0, 0);
+  protected:
+    Pixel pixel1;
+    Pixel pixel2;
 
         public:
           BinaryFilter();
