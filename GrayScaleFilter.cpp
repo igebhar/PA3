@@ -19,7 +19,7 @@ GrayscaleFilter::~GrayscaleFilter() {}
 
  Pixel GrayscaleFilter::apply_transform(const Pixel& pix) const{
   uint8_t lum = pix.luminance();
-Pixel pixelnew(lum,lum,lum);
+  Pixel pixelnew(lum,lum,lum);
 
   return pixelnew;
 }
