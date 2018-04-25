@@ -14,7 +14,7 @@ igehbar, ckduval
 #include "Filter.h"
 #include "GrayscaleFilter.h"
 #include "HFlipFilter.h"
-#include "Kernel.h"
+#include "KernelFilter.h"
 #include "PixelFilter.h"
 #include "SepiaFilter.h"
 #include "SharpenFilter.h"
@@ -34,27 +34,24 @@ int main(int argc, char const *argv[]) {
 
     //Open filters
     std::ifstream in(argv[1]);
-    std::ofstream out (argv[2]);
+    std::ofstream out(argv[2]);
 
-    int i = 0;
     //Welcome Message
-    cout << "~******************************************~" << endl;
-    cout << " Welcome to Izzy and Clare's Filter Machine" << endl;
-    cout << "~******************************************~" << endl;
+    std::cerr << "~******************************************~" << endl;
+    std::cerr << " Welcome to Izzy and Clare's Filter Machine" << endl;
+    std::cerr << "~******************************************~" << endl;
 
-    while (i == 0) {
-      cout << "Please choose up to 6 filters to apply to your" << endl;
-      cout << "imported image. Note: The filters will be" << endl;
-      cout << "in the order you put them. When you've finished" << endl;
-      cout << "your list, enter -1." << endl;
+    std::cerr << "Please choose up to 6 filters to apply to your" << endl;
+    std::cerr << "imported image. Note: The filters will be" << endl;
+    std::cerr << "in the order you put them. When you've finished" << endl;
+    std::cerr << "your list, enter -1." << endl;
 
-      cout << "1. Sharpen" << endl;
-      cout << "2. Blur" << endl;
-      cout << "3. Horizontal Flip" << endl;
-      cout << "4. Vertical Flip" << endl;
-      cout << "5. Binary Filter" << endl;
-      cout << "6. Black and White" << endl;
-    }
+    std::cerr << "1. Sharpen" << endl;
+    std::cerr << "2. Blur" << endl;
+    std::cerr << "3. Horizontal Flip" << endl;
+    std::cerr << "4. Vertical Flip" << endl;
+    std::cerr << "5. Binary Filter" << endl;
+    std::cerr << "6. Black and White" << endl;
 
     //Filter Vector
     vector<int> choice;
@@ -66,8 +63,15 @@ int main(int argc, char const *argv[]) {
     }
 
     Image puppy(in);
+    
+    Header header = puppy.header();
+    //this->HDR = header;
+    int size = header.width() * header.height();
+    int s = 0;
 
-    //
+    vector<Pixel> temp;
+    
+    //For loop of applying filters
     for (c = 0; choice.at(c) != -1; c++) {
       //Sharpen
       if (choice.at(c) == 1) {
@@ -91,19 +95,19 @@ int main(int argc, char const *argv[]) {
       }
       //Binary
       else if (choice.at(c) == 5) {
-          BinaryFilter binary;
-          binary.apply(puppy);
+	//Pass in Pixels, not image
+
       }
       //Black and White
       else if (choice.at(c) == 6) {
-        GrayscaleFilter bw;
-        bw.apply_transform(puppy);
+	//Pass in Pixels, not image
+
       } else {
-        cout << "You entered a number other than:" << endl;
-        cout << "-1, 1, 2, 3, 4, 5, or 6. Please," << endl;
-        cout << "try again." << endl;
+        std::cerr << "You entered a number other than:" << endl;
+        std::cerr << "-1, 1, 2, 3, 4, 5, or 6. Please," << endl;
+        std::cerr << "try again." << endl;
         return 1;
-      }
+        }
     }
 
     //Write output image .ppm
