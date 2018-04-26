@@ -38,4 +38,4 @@ class PixelFilter : public Filter {
 
 };
 
-#endif
+#endif 
