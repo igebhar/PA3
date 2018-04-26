@@ -13,6 +13,7 @@ igehbar, ckduval
 #include "Image.h"
 
 using namespace std;
+//Matrix defined with a vector of double vectors
 using Matrix = vector<vector<double>>;
 
 class SimpleFilter : public Filter {
