@@ -46,7 +46,7 @@ class Image {
     const Header& header() const;
     const vector<Pixel>& pixels() const;
 
-    // Allow us to change a pixel... might be a bad idea
+    // Allow us to change a pixel
     Pixel& operator()(int, int);
 };
 
