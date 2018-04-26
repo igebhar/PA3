@@ -14,14 +14,15 @@ Filter::Filter(string name) :
 
 Filter::Filter(const Filter& f) :
   name(f.name)  {}
-//Destructos
+//Destructor
 Filter::~Filter() {}
 
-// usies clamp function to help apply filter in the future
+//Checks rgb values are inbetween 0 and 255 (ints)
 int Filter::clamp (int lo, int hi, int x) {
   return std::max(lo, std::min(x, hi));
 }
 
+//Checks rgb values are inbetween 0 and 255 (double)
 double Filter::clamp (double lo, double hi, double x) {
   return std::max(lo, std::min(x, hi));
 }
