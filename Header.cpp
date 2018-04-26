@@ -26,6 +26,7 @@ int& Header::width () { return this->W; }
 int& Header::height () { return this->H; }
 int& Header::max_color () { return this->MC; }
 
+// This will grab the header nformation 
 Header& Header::operator= (const Header& hdr) {
   this->MAGIC = hdr.MAGIC;
   this->W     = hdr.W;
