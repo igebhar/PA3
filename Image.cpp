@@ -22,6 +22,8 @@ Pixel& Image::operator() (int x, int y) {
   return this->PIX[ndx];
 }
 
+// This function reads the header information from the images
+/// it used the in file and returns information about the header
 Header Image::read_header (ifstream& in) {
   string magic;
   int w, h, mc;
@@ -37,6 +39,8 @@ Header Image::read_header (ifstream& in) {
   return Header(magic, w, h, mc);
 }
 
+//This function ignores comments. Will be used to ignore
+//comments and white space in the header function
 void Image::ignore_comments (ifstream& in) {
   char c;
   in.get(c);
@@ -50,6 +54,9 @@ void Image::ignore_comments (ifstream& in) {
   in.unget();
 }
 
+
+// Reads pixels using a pixel array. takes in header information
+// and the input file returns a vector of pixels from the image
 vector<Pixel> Image::read_pixels (const Header& hdr, ifstream& in) {
   int num_pixels = hdr.width() * hdr.height();
   vector<Pixel> pixels(num_pixels);
@@ -76,6 +83,7 @@ vector<Pixel> Image::read_pixels (const Header& hdr, ifstream& in) {
 void Image::make_p3 () { this->HDR.magic() = "P3"; }
 void Image::make_p6 () { this->HDR.magic() = "P6"; }
 
+// Uses outfile to write a header this helps create files
 void Image::write_header (ofstream& out) const {
   out << this->HDR.magic() << " "
       << this->HDR.width() << " "
@@ -83,6 +91,8 @@ void Image::write_header (ofstream& out) const {
       << this->HDR.max_color() << "\n";
 }
 
+//Assigns pixels to the outfile helping create the proper outfile
+// uawa .at(i) as suggested in the write up to ensure bounds checking
 void Image::write_to (ofstream& out) const {
   write_header(out);
 
