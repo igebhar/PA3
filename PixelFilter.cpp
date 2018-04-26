@@ -6,6 +6,7 @@ igehbar, ckduval
 
 #include "PixelFilter.h"
 
+//Constructors
 PixelFilter::PixelFilter() :
   Filter() {}
 
@@ -15,17 +16,24 @@ PixelFilter::PixelFilter(string name) :
 PixelFilter::PixelFilter(const PixelFilter& f) :
   Filter(f.name)  {}
 
+//Deconstructor
 PixelFilter::~PixelFilter() {}
 
+//Function makes sure the pixel rgb values are
+//inbetween 0 and 255 (int)
 int PixelFilter::clamp (int lo, int hi, int x) {
   return std::max(lo, std::min(x, hi));
 }
 
+//Function makes sure the pixel rgb values are
+//inbetween 0 and 255 (double)
 double PixelFilter::clamp (double lo, double hi, double x) {
   return std::max(lo, std::min(x, hi));
 }
 
+//Changes image to vector then transforms the vector
 void PixelFilter::apply(Image& img) const {
+  //Saves height and width to ints
   int img_rows = img.header().height();
   int img_cols = img.header().width();
 
