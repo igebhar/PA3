@@ -17,13 +17,15 @@ using namespace std;
 
 class BlurFilter : public KernelFilter {
     protected:
+        //new blur matrix that will change the clarity
+        // of the image
           static const  Matrix Blur;
 
         public:
           BlurFilter();
           BlurFilter(string);
           BlurFilter(const BlurFilter&);
-              // Finally implement!
+              // Used to apply filters to the image
               virtual void apply(Image&) const;
 
             };
