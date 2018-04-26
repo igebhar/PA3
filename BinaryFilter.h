@@ -15,17 +15,21 @@ igehbar, ckduval
 using namespace std;
 
 class BinaryFilter : public PixelFilter {
+  // Two pixel variables that will be used to help set colors
   protected:
     Pixel pixel1;
     Pixel pixel2;
 
         public:
+          //Normal constructors
           BinaryFilter();
           BinaryFilter(string);
           BinaryFilter(const BinaryFilter&);
           ~BinaryFilter();
-              // Finally implement!
-          virtual Pixel apply(Pixel&) const;
+  
+          // Will be used later in the Binary cpp to make 
+          // the filter
+          virtual Pixel apply_transform(Pixel&) const;
 
 };
 #endif
