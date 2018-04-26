@@ -66,8 +66,8 @@ int main(int argc, char const *argv[]) {
     std::string ten = "shar_gs_hf_100.ppm";
     std::ofstream shar_gs_hf(ten);
 
-    std::string eleven = "blur_gs_hf_100.ppm";
-    std::ofstream blur_gs_hf(eleven);
+    std::string eleven = "blur_gs_vf_100.ppm";
+    std::ofstream blur_gs_vf(eleven);
 
     std::string twelve = "blur_bin_hf_100.ppm";
     std::ofstream blur_bin_hf(twelve);
