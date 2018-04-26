@@ -4,24 +4,30 @@ CPSC 002 Spring 2018
 igehbar, ckduval
 **/
 
-#include "BinaryFilter.h"
-#include "Pixel.h"
+#ifndef BINARYFILTER_H
+#define BinaryFilter_H
 
-BinaryFilter::BinaryFilter() :
-    PixelFilter(" "), pixel1 (255, 255, 255), pixel2 (0,0,0) {}
+#include <string>
+#include <algorithm>
+#include "Image.h"
+#include "PixelFilter.h"
 
+using namespace std;
 
-BinaryFilter::BinaryFilter(const BinaryFilter& bf) :
-    PixelFilter(bf.name), pixel1(255, 255, 255), pixel2(0,0,0)  {}
+class BinaryFilter : public PixelFilter {
+  protected:
+    Pixel pixel1;
+    Pixel pixel2;
 
-BinaryFilter::~BinaryFilter() {}
+        public:
+          BinaryFilter();
+          BinaryFilter(string);
+	  BinaryFilter(Pixel, Pixel);
+          BinaryFilter(const BinaryFilter&);
+          ~BinaryFilter();
+              // Finally implement!
+          virtual Pixel apply_transform(const Pixel&) const;
 
-Pixel BinaryFilter::apply_transform(const Pixel& pix) const{
-  uint8_t lum = pix.luminance();
-    if(lum >(pixel1.r() / 2)){
-      return pixel1;
-    }
-    else {
-      return pixel2;
-    }
-}
+};
+#endif
+
