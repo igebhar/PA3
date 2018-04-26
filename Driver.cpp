@@ -34,139 +34,175 @@ int main(int argc, char const *argv[]) {
     std::ifstream in(argv[1]);
     std::ofstream out(argv[2]);
 
-    //Welcome Message
-    std::cerr << "~******************************************~" << endl;
-    std::cerr << " Welcome to Izzy and Clare's Filter Machine" << endl;
-    std::cerr << "~******************************************~" << endl;
+    //Output File String Names
+    std::string one = "sharpen_100.ppm";
+    std::ofstream sharpen(one);
 
-    std::cerr << "Please choose up to 6 filters to apply to your" << endl;
-    std::cerr << "imported image. Note: The filters will be" << endl;
-    std::cerr << "in the order you put them. When you've finished" << endl;
-    std::cerr << "your list, enter -1." << endl;
+    std::string two = "binary_100.ppm";
+    std::ofstream binary(two);
 
-    std::cerr << "1. Sharpen" << endl;
-    std::cerr << "2. Blur" << endl;
-    std::cerr << "3. Horizontal Flip" << endl;
-    std::cerr << "4. Vertical Flip" << endl;
-    std::cerr << "5. Binary Filter" << endl;
-    std::cerr << "6. Black and White" << endl;
+    std::string three = "grayscale_100.ppm";
+    std::ofstream grayscale(three);
 
-    //Filter Vector
-    vector<Filter*> combo;
-    int c = 0;
-    int r, g, b;
+    std::string four = "sepia_100.ppm";
+    std::ofstream sepia(four);
+
+    std::string five = "blur_100.ppm";
+    std::ofstream blur(five);
+
+    std::string six = "horizontal_100.ppm";
+    std::ofstream horizontal(six);
+
+    std::string seven = "vertical_100.ppm";
+    std::ofstream vertical(seven);
+
+    //Combination File Names
+    std::string eight = "shar_bin_hf_100.ppm";
+    std::ofstream shar_bin_hf(eight);
+
+    std::string nine = "shar_sep_vf_100.ppm";
+    std::ofstream shar_sep_vf(nine);
+
+    std::string ten = "shar_gs_hf_100.ppm";
+    std::ofstream shar_gs_hf(ten);
+
+    std::string eleven = "blur_gs_vf_100.ppm";
+    std::ofstream blur_gs_vf(eleven);
+
+    std::string twelve = "blur_bin_hf_100.ppm";
+    std::ofstream blur_bin_hf(twelve);
+
+    std::string thirteen = "blur_sep_vf_100.ppm";
+    std::ofstream blur_sep_vf(thirteen);
+
+    std::string fourteen = "stud_creation_100.ppm";
+    std::ofstream stud_creation(fourteen);
+
+    //Error Messages for opening files
+    if (!(in && out)) {
+      std::cerr << "Could not open input/output\n";
+      return 1;
+    }
 
     Image puppy(in);
 
-    cin >> c;
-    while ((c != (-1)) && (combo.size() <= 6)) {
-      if (c == 1) {
-	SharpenFilter* sharpen = new SharpenFilter();
-        combo.push_back(sharpen);
-      } else if (c == 2) {
-	BlurFilter* blur = new BlurFilter();
-	combo.push_back(blur);
-      } else if (c == 3) {
-	HFlipFilter* hFlip = new HFlipFilter();
-	combo.push_back(hFlip);
-      } else if (c ==4) {
-	VFlipFilter* vFlip = new VFlipFilter();
-	combo.push_back(vFlip);
-      } else if (c == 5) {
-	std::cerr << "What 3 rgb values would you like for color 1?\n";
-	cin >> r >> g >> b;
-	Pixel pix1 (r, g, b);
-	std::cerr << "What 3 rbg values would you like for color2?\n";
-	cin >> r >> g >> b;
-	Pixel pix2 (r, g, b);
-	BinaryFilter* binary (pix1, pix2) = new BinaryFilter;
-	combo.push_back(binary);
-      } else if (c == 6) {
-	GrayscaleFilter* grayscale = new GrayscaleFilter;;
-	combo.push_back(grayscale);
-      } else if (c == 7) {
-	SepiaFilter* sepia = new GrayscaleFilter;
-	combo.push_back(sepia);
-      } else {
-	std::cerr << "Error, not an option between 1 and 7, try again.\n";
-      }
-      cin >> c;
-    }
+    Image sharpen100(puppy);
+    SharpenFilter sharp;
+    sharp.apply(sharpen100);
+    sharpen100.write_to(sharpen);
 
-    int order = 0;
+    Image binary100(puppy);
+    BinaryFilter bin;
+    bin.apply_transform(binary100);
+    binary100.write_to(binary);
 
-std::cerr << combo.size() << endl;
+    Image grayscale100(puppy);
+    GrayscaleFilter gs;
+    gs.apply_transform(grayscale100);
+    grayscale100.write_to(grayscale);
 
-//******
-    for (order = 0; order < (int)combo.size(); order++) {
-	combo.at(order)->apply(puppy);
-}
-/*
-	if (combo.at(order) == &sharpen) {
-	  combo.at(order)->apply(puppy);
-	} else if (combo.at(order) == &blur) {
-	  combo.at(order)->apply(puppy);
-	} else if (combo.at(order) == &hFlip) {
-	  combo.at(order)->apply(puppy);
-	} else if (combo.at(order) == &vFlip) {
-	  combo.at(order)->apply(puppy);
-	} else if (combo.at(order) == &binary) {
-          combo.at(order)->apply(puppy);
-        } else if (combo.at(order) == &grayscale) {
-          combo.at(order)->apply(puppy);
-        } else if (combo.at(order) == &sepia) {
-          combo.at(order)->apply(puppy);
-        } 
-    }
-    
-    //For loop of applying filters
-    for (c = 0; choice.at(c) != -1; c++) {
-      //Sharpen
-      if (choice.at(c) == 1) {
-        SharpenFilter sharp;
-        sharp.apply(puppy);
-      }
-      //Blur
-      else if (choice.at(c) == 2) {
-          BlurFilter blur;
-          blur.apply(puppy);
-      }
-      //Horizontal Flip
-      else if (choice.at(c) == 3) {
-          HFlipFilter hFlip;
-          hFlip.apply(puppy);
-      }
-      //Vertical Flip
-      else if (choice.at(c) == 4) {
-          VFlipFilter vFlip;
-          vFlip.apply(puppy);
-      }
-      //Binary
-      else if (choice.at(c) == 5) {
+    Image sepia100(puppy);
+    SepiaFilter sep;
+    sep.apply(sepia100);
+    sepia100.write_to(sepia);
 
-      }
-      //Black and White
-      else if (choice.at(c) == 6) {
+    Image blur100(puppy);
+    BlurFilter blurone;
+    blurone.apply(blur100);
+    blur100.write_to(blur);
 
-      } 
-      //Sepia
-      else if (choice.at(c) == 7) {
+    Image horizontal100(puppy);
+    HFlipFilter hFlip;
+    hFlip.apply(horizontal100);
+    horizontal100.write_to(horizontal);
 
-      } else {
-        std::cerr << "You entered a number other than:" << endl;
-        std::cerr << "-1, 1, 2, 3, 4, 5, or 6. Please," << endl;
-        std::cerr << "try again." << endl;
-        return 1;
-        }
-    }
-*/
-    //Write output image .ppm
-    puppy.write_to(out);
-    combo.clear();
+    Image vertical100(puppy);
+    VFlipFilter vFlip;
+    vFlip.apply(vertical100);
+    vertical100.write_to(vertical);
+
+    //Combination files
+    Image shar_bin_hf_100(puppy);
+    SharpenFilter sharpone;
+    sharpone.apply(shar_bin_hf_100);
+    BinaryFilter bin1;
+    bin1.apply_transform(shar_bin_hf_100);
+    HFlipFilter hFlip1;
+    hFlip1.apply(shar_bin_hf_100);
+    shar_bin_hf_100.write_to(shar_bin_hf);
+
+    Image shar_sep_vf_100(puppy);
+    SharpenFilter sharp1;
+    sharp1.apply(shar_sep_vf_100);
+    SepiaFilter sep1;
+    sep1.apply(shar_sep_vf_100);
+    VFlipFilter vFlip1;
+    vFlip1.apply(shar_sep_vf_100);
+    shar_sep_vf_100.write_to(shar_sep_vf);
+
+    Image shar_gs_hf_100(puppy);
+    SharpenFilter sharp2;
+    sharp2.apply(shar_gs_hf_100);
+    GrayscaleFilter gs2;
+    gs2.apply_transform(shar_gs_hf_100);
+    HFlipFilter hFlip2;
+    hFlip2.apply(shar_gs_hf_100);
+    shar_gs_hf_100.write_to(shar_gs_hf);
+
+    Image blur_gs_vf_100(puppy);
+    BlurFilter blur3;
+    blur3.apply(blur_gs_vf_100);
+    GrayscaleFilter gs3;
+    gs3.apply_transform(blur_gs_vf_100);
+    VFlipFilter vFlip3;
+    vFlip3.apply(blur_gs_vf_100);
+    blur_gs_vf_100.write_to(blur_gs_vf);
+
+    Image blur_bin_hf_100(puppy);
+    BlurFilter blur4;
+    blur4.apply(blur_bin_hf_100);
+    BinaryFilter bin4;
+    bin4.apply_transform(blur_bin_hf_100);
+    HFlipFilter hFlip4;
+    hFlip4.apply(blur_bin_hf_100);
+    blur_bin_hf_100.write_to(blur_bin_hf);
+
+    Image blur_sep_vf_100(puppy);
+    BlurFilter blur5;
+    blur5.apply(blur_sep_vf_100);
+    SepiaFilter sep5;
+    sep5.apply(blur_sep_vf_100);
+    VFlipFilter vFlip5;
+    vFlip5.apply(blur_sep_vf_100);
+    blur_sep_vf_100.write_to(blur_sep_vf);
+
+    Image stud_creation_100(puppy);
+    GrayscaleFilter gs6;
+    gs6.apply_transform(stud_creation_100);
+    VFlipFilter vFlip6;
+    vFlip6.apply(stud_creation_100);
+    HFlipFilter hFlip6;
+    hFlip6.apply(stud_creation_100);
+    stud_creation_100.write_to(stud_creation);
 
     //Close files
     in.close();
     out.close();
+    sharpen.close();
+    binary.close();
+    grayscale.close();
+    sepia.close();
+    blur.close();
+    horizontal.close();
+    vertical.close();
+    shar_bin_hf.close();
+    shar_sep_vf.close();
+    shar_gs_hf.close();
+    blur_gs_vf.close();
+    blur_bin_hf.close();
+    blur_sep_vf.close();
+    stud_creation.close();
 
     return 0;
 }
+
