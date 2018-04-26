@@ -18,11 +18,12 @@ using namespace std;
 class GrayscaleFilter : public PixelFilter {
 
         public:
+        //Default 
           GrayscaleFilter();
           GrayscaleFilter(string);
           GrayscaleFilter(const GrayscaleFilter&);
            ~GrayscaleFilter();
-              // Finally implement!
+              // apply transform to be used in the gratscale filter
               virtual Pixel apply_transform(const Pixel&) const;
 
             };
