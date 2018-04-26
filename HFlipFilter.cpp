@@ -7,6 +7,7 @@ igehbar, ckduval
 #include "HFlipFilter.h"
 #include "Header.h"
 
+//Default constructors
 HFlipFilter::HFlipFilter() :
   SimpleFilter("") {}
 
@@ -15,7 +16,10 @@ HFlipFilter::HFlipFilter(string name) : SimpleFilter(name){}
 HFlipFilter::HFlipFilter(const HFlipFilter& f) :
   SimpleFilter(f.name)  {}
 
-
+// this goes through the columns and flips them horizontally
+//takes the width and substracts 1 and then subtracts again
+//this will give the proper value for the width as seen in the
+// example matrix
 void HFlipFilter::apply(Image& img) const{
   int height = img.header().height();
   int width = img.header().width();
