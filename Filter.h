@@ -24,7 +24,7 @@ class Filter {
     Filter(const Filter&);
 
   public:
-    // Pure virtual destructor - Still needs definition!
+    // Pure virtual destructor -
     virtual ~Filter () = 0;
 
     // Static helpers - should be a template
