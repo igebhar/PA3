@@ -21,7 +21,7 @@ class HFlipFilter : public SimpleFilter {
           HFlipFilter();
           HFlipFilter(string);
           HFlipFilter(const HFlipFilter&);
-              // Finally implement!
+              //will help pass the Hflip filter to the image
               void apply(Image&) const;
 
             };
