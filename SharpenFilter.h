@@ -17,13 +17,16 @@ using namespace std;
 
 class SharpenFilter : public KernelFilter {
     protected:
+        //Protected matrix to be used within class
+        //and derived classes
           static const  Matrix K3;
 
         public:
+          //Constructor
           SharpenFilter();
           SharpenFilter(string);
           SharpenFilter(const SharpenFilter&);
-              // Finally implement!
+              // Virtual apply function
               virtual void apply(Image&) const;
 
             };
