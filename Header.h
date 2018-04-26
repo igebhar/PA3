@@ -37,7 +37,7 @@ private:
 
     // Assignment
     Header& operator= (const Header&);
-    // Output
+    // this shows the output
     friend ostream& operator<< (ostream&, const Header&);
 };
 
