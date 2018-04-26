@@ -12,11 +12,12 @@ using namespace std;
 class SepiaFilter : public PixelFilter {
 
         public:
+        //Constructors
           SepiaFilter();
           SepiaFilter(string);
           SepiaFilter(const SepiaFilter&);
            ~SepiaFilter();
-              // Finally implement!
+              //Virtual applies to all pixels in the image
               virtual Pixel apply_transform(const Pixel&) const;
 
             };
