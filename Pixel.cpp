@@ -53,4 +53,4 @@ Pixel& Pixel::operator= (Pixel&& rhs) {
   this->G = rhs.G;
   this->B = rhs.B;
   return *this;
-}
+} 
