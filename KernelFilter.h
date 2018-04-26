@@ -18,7 +18,7 @@ using Matrix = vector<vector<double>>;
 class KernelFilter : public Filter {
   protected:
     // Data - Shows that abstract classes can still contain data
-  //  string name;
+    //  string name;
 
     // Derived classes need these visible
     KernelFilter();
