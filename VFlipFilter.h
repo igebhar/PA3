@@ -18,10 +18,12 @@ using namespace std;
 class VFlipFilter : public SimpleFilter {
 
         public:
+        //Normal constructors
           VFlipFilter();
           VFlipFilter(string);
           VFlipFilter(const VFlipFilter&);
-              // Finally implement!
+              // Will be used later in the Binary cpp to make 
+              // the filter
               void apply(Image&) const;
 
             };
