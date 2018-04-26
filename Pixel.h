@@ -18,10 +18,12 @@ class Pixel {
     uint8_t R, G, B;
 
   public:
+    //Constructors
     Pixel ();
     Pixel (const Pixel&);
     Pixel (Pixel&&);
     Pixel (uint8_t, uint8_t, uint8_t);
+    //Deconstructor
     ~Pixel ();
 
     // Plain getters, use only these for immutable pixels
