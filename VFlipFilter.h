@@ -27,4 +27,4 @@ class VFlipFilter : public SimpleFilter {
               void apply(Image&) const;
 
             };
-#endif
+#endif 
