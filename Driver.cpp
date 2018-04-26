@@ -1,6 +1,4 @@
-//DRIVER.CPP //MAIN
-
-/**
+/*
 Isabella Gebhart and Clare DuVal
 CPSC 002 Spring 2018
 igehbar, ckduval
@@ -54,22 +52,72 @@ int main(int argc, char const *argv[]) {
     std::cerr << "6. Black and White" << endl;
 
     //Filter Vector
-    vector<int> choice;
+    vector<Filter*> combo;
     int c = 0;
-
-    while (c != (-1)) {
-      cin >> c;
-      choice.push_back(c);
-    }
+    int r, g, b;
 
     Image puppy(in);
-    
-    Header header = puppy.header();
-    //this->HDR = header;
-    int size = header.width() * header.height();
-    int s = 0;
 
-    vector<Pixel> temp;
+    cin >> c;
+    while ((c != (-1)) && (combo.size() <= 6)) {
+      if (c == 1) {
+	SharpenFilter* sharpen = new SharpenFilter();
+        combo.push_back(sharpen);
+      } else if (c == 2) {
+	BlurFilter* blur = new BlurFilter();
+	combo.push_back(blur);
+      } else if (c == 3) {
+	HFlipFilter* hFlip = new HFlipFilter();
+	combo.push_back(hFlip);
+      } else if (c ==4) {
+	VFlipFilter* vFlip = new VFlipFilter();
+	combo.push_back(vFlip);
+      } else if (c == 5) {
+	std::cerr << "What 3 rgb values would you like for color 1?\n";
+	cin >> r >> g >> b;
+	Pixel pix1 (r, g, b);
+	std::cerr << "What 3 rbg values would you like for color2?\n";
+	cin >> r >> g >> b;
+	Pixel pix2 (r, g, b);
+	BinaryFilter* binary (pix1, pix2) = new BinaryFilter;
+	combo.push_back(binary);
+      } else if (c == 6) {
+	GrayscaleFilter* grayscale = new GrayscaleFilter;;
+	combo.push_back(grayscale);
+      } else if (c == 7) {
+	SepiaFilter* sepia = new GrayscaleFilter;
+	combo.push_back(sepia);
+      } else {
+	std::cerr << "Error, not an option between 1 and 7, try again.\n";
+      }
+      cin >> c;
+    }
+
+    int order = 0;
+
+std::cerr << combo.size() << endl;
+
+//******
+    for (order = 0; order < (int)combo.size(); order++) {
+	combo.at(order)->apply(puppy);
+}
+/*
+	if (combo.at(order) == &sharpen) {
+	  combo.at(order)->apply(puppy);
+	} else if (combo.at(order) == &blur) {
+	  combo.at(order)->apply(puppy);
+	} else if (combo.at(order) == &hFlip) {
+	  combo.at(order)->apply(puppy);
+	} else if (combo.at(order) == &vFlip) {
+	  combo.at(order)->apply(puppy);
+	} else if (combo.at(order) == &binary) {
+          combo.at(order)->apply(puppy);
+        } else if (combo.at(order) == &grayscale) {
+          combo.at(order)->apply(puppy);
+        } else if (combo.at(order) == &sepia) {
+          combo.at(order)->apply(puppy);
+        } 
+    }
     
     //For loop of applying filters
     for (c = 0; choice.at(c) != -1; c++) {
@@ -95,12 +143,14 @@ int main(int argc, char const *argv[]) {
       }
       //Binary
       else if (choice.at(c) == 5) {
-	//Pass in Pixels, not image
 
       }
       //Black and White
       else if (choice.at(c) == 6) {
-	//Pass in Pixels, not image
+
+      } 
+      //Sepia
+      else if (choice.at(c) == 7) {
 
       } else {
         std::cerr << "You entered a number other than:" << endl;
@@ -109,9 +159,10 @@ int main(int argc, char const *argv[]) {
         return 1;
         }
     }
-
+*/
     //Write output image .ppm
     puppy.write_to(out);
+    combo.clear();
 
     //Close files
     in.close();
