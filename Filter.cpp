@@ -5,7 +5,7 @@ igehbar, ckduval
 **/
 
 #include "Filter.h"
-
+//Default constructors
 Filter::Filter() :
   name("") {}
 
@@ -14,9 +14,10 @@ Filter::Filter(string name) :
 
 Filter::Filter(const Filter& f) :
   name(f.name)  {}
-
+//Destructos
 Filter::~Filter() {}
 
+// usies clamp function to help apply filter in the future
 int Filter::clamp (int lo, int hi, int x) {
   return std::max(lo, std::min(x, hi));
 }
