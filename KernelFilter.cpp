@@ -6,6 +6,7 @@ igehbar, ckduval
 
 #include "KernelFilter.h"
 
+//Constructors
 KernelFilter::KernelFilter() :
   Filter() {}
 
@@ -15,15 +16,19 @@ KernelFilter::KernelFilter(string name) :
 KernelFilter::KernelFilter(const KernelFilter& f) :
   Filter(f.name)  {}
 
+//Deconstructor
 KernelFilter::~KernelFilter() {}
 
+//Checks rgb values are inbetween 0 and 255 (ints)
 int KernelFilter::clamp (int lo, int hi, int x) {
   return std::max(lo, std::min(x, hi));
 }
 
+//Checks rgb values are inbetween 0 and 255 (doubles)
 double KernelFilter::clamp (double lo, double hi, double x) {
   return std::max(lo, std::min(x, hi));
 }
+
 
 void KernelFilter::apply(Image& img, const Matrix& k) const {
   int k_center = k.size()/2;
